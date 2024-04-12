@@ -50,3 +50,34 @@ GROUP BY URL
 ORDER BY Count DESC
 LIMIT 10;
 
+
+------------------------------------------------------------------------------------------------------------------
+
+EXPLAIN indexes = 1
+SELECT URL, count(URL) AS Count
+FROM hits_UserID_URL
+WHERE UserID = 749927693
+GROUP BY URL
+ORDER BY Count DESC
+LIMIT 10;
+
+------------------------------------------------------------------------------------------------------------------
+EXPLAIN:
+
+Expression (Project names)
+  Limit (preliminary LIMIT (without OFFSET))
+    Sorting (Sorting for ORDER BY)
+      Expression ((Before ORDER BY + Projection))
+        Aggregating
+          Expression (Before GROUP BY)
+            Expression
+              ReadFromMergeTree (default.hits_UserID_URL)
+              Indexes:
+                PrimaryKey
+                  Keys: 
+                    UserID
+                  Condition: (UserID in [749927693, 749927693])
+                  Parts: 1/1
+                  Granules: 1/1083
+				  
+------------------------------------------------------------------------------------------------------------------		  
