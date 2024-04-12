@@ -1,0 +1,9 @@
+docker run --rm --name click-house-server -e CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT=1 -e CLICKHOUSE_USER=username -e CLICKHOUSE_PASSWORD=password -p 8123:8123/tcp clickhouse/clickhouse-server
+
+
+docker run --rm --name click-house-server ^
+ -e CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT=1 ^
+ -e CLICKHOUSE_USER=username ^
+ -e CLICKHOUSE_PASSWORD=password ^
+ -p 8123:8123/tcp ^
+ clickhouse/clickhouse-server
